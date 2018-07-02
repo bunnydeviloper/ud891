@@ -1,3 +1,5 @@
+var isFirstPage = true;
+
 page('/', function() {
   page.redirect('/what-is-vegemite');
 });
@@ -19,6 +21,19 @@ page('/:slug', function(context) {
   newMenuItem.classList.add('is-active');
   newPage.classList.add('is-active');
 
+  /* NEW CONTENT BEGINS */
+
+  // If this is the first time someone is visiting the site, don't move focus around
+  // Wait until they have clicked a menu item
+  if (isFirstPage) { // NOTE: isFirstPage is a global var declared above
+    isFirstPage = false;
+    return;
+  }
+
+  // Move focus to a heading in the new page
+  newPage.querySelector('h2').focus();
+
+  /* NEW CONTENT ENDS */
 });
 
 page({
