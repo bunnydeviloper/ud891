@@ -1,3 +1,5 @@
+var isFirstPage = true;
+
 page('/', function() {
   page.redirect('/what-is-vegemite');
 });
@@ -23,7 +25,7 @@ page('/:slug', function(context) {
 
   // If this is the first time someone is visiting the site, don't move focus around
   // Wait until they have clicked a menu item
-  if (isFirstPage) {
+  if (isFirstPage) { // NOTE: isFirstPage is a global var declared above
     isFirstPage = false;
     return;
   }
