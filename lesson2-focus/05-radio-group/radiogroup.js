@@ -31,7 +31,20 @@
 
         e.preventDefault();
 
+        /* Down Arrow and Right Arrow:
+         * move focus to the next radio button in the group
+         * selects that button
+         * if focus on the last item, then focus wraps to first item
+         * REF: ARIA Authoring Best Practices (radio group)
+         */
+
         // This seems like a good place to do some stuff :)
+        // if the current element has tabindex="0", which means currently active and 'checked'
+        if (this.focusedIdx === 0) {
+          this.focusedIdx = this.buttons.length - 1;
+        } else {
+          this.focusedIdx--;
+        }
 
         break;
 
@@ -43,6 +56,11 @@
         e.preventDefault();
 
         // This seems like a good place to do some stuff :)
+        if (this.focusedIdx === this.buttons.length - 1) {
+          this.focusedIdx = 0;
+        } else {
+          this.focusedIdx++;
+        }
 
         break;
       }
